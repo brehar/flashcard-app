@@ -7,7 +7,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/flashcards');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/flashcards');
 
 var app = express();
 
