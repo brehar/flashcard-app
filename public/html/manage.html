@@ -1,0 +1,95 @@
+<br><br>
+
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a ng-click="setCategory('Angular')">Angular</a></li>
+            <li class="tab col s3"><a ng-click="setCategory('JavaScript')">JavaScript</a></li>
+            <li class="tab col s3"><a ng-click="setCategory('jQuery')">jQuery</a></li>
+            <li class="tab col s3"><a ng-click="setCategory('Node')">Node</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="row" ng-hide="questionToAdd">
+    <div class="col s4 offset-s4 center">
+        <a class="waves-effect waves-light btn" ng-click="addQuestion()">Add a Question</a>
+    </div>
+</div>
+
+<div class="row" ng-show="questionToAdd">
+    <br><br>
+    <form class="col s12" ng-submit="saveQuestion()">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="question" placeholder="Question" type="text" class="validate" ng-model="newQuestion.question" required>
+                <label for="question">Question</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="answer" placeholder="Answer" type="text" class="validate" ng-model="newQuestion.answer" required>
+                <label for="answer">Answer</label>
+            </div>
+            <div class="input-field col s12">
+                <select class="browser-default" ng-model="newQuestion.category" required>
+                    <option value="" disabled selected>Choose a Category</option>
+                    <option ng-value="Angular">Angular</option>
+                    <option ng-value="JavaScript">JavaScript</option>
+                    <option ng-value="jQuery">jQuery</option>
+                    <option ng-value="Node">Node</option>
+                </select>
+            </div>
+            <div class="col s12 center">
+                <br><button type="button" class="waves-effect waves-light btn" ng-click="cancelAdd()">Cancel</button>
+                <button type="submit" class="waves-effect waves-light btn">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row" ng-show="flashcardToEdit">
+    <br><br>
+    <form class="col s12" ng-submit="saveEdit()">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="edit-question" placeholder="Question" type="text" class="validate" ng-model="flashcardToEdit.question" required>
+                <label for="edit-question">Question</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="edit-answer" placeholder="Answer" type="text" class="validate" ng-model="flashcardToEdit.answer" required>
+                <label for="edit-answer">Answer</label>
+            </div>
+            <div class="input-field col s12">
+                <select class="browser-default" ng-model="flashcardToEdit.category" required>
+                    <option value="" disabled selected>Choose a Category</option>
+                    <option ng-value="Angular">Angular</option>
+                    <option ng-value="JavaScript">JavaScript</option>
+                    <option ng-value="jQuery">jQuery</option>
+                    <option ng-value="Node">Node</option>
+                </select>
+            </div>
+            <div class="col s12 center">
+                <br><button type="button" class="waves-effect waves-light btn" ng-click="cancelEdit()">Discard Changes</button>
+                <button type="submit" class="waves-effect waves-light btn">Save Changes</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="flashcard in flashcards | filter:{category: filterCategory} track by $index">
+            <td>{{ flashcard.question }}</td>
+            <td>{{ flashcard.answer }}</td>
+            <td><button type="button" ng-click="editFlashcard(flashcard._id, flashcard)"><i class="material-icons">mode_edit</i></button></td>
+            <td><button type="button" ng-click="removeFlashcard(flashcard._id, flashcard)"><i class="material-icons">delete</i></button></td>
+        </tr>
+    </tbody>
+</table>

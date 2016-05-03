@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Flashcards</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://code.angularjs.org/1.5.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="/js/module.js"></script>
+    <script src="/js/controllers.js"></script>
+    <script src="/js/services.js"></script>
+</head>
+<body ng-app="flashcardApp">
+    <nav>
+        <div class="nav-wrapper">
+            <a ui-sref="home" class="brand-logo">JavaScript Flashcards</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a ui-sref="manage">Manage Flashcards</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <ui-view></ui-view>
+    </div>
+</body>
+</html>
